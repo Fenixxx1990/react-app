@@ -26,7 +26,8 @@ export default defineConfig([
       "no-unused-vars": ["error", { varsIgnorePattern: "^[A-Z_]" }],
       semi: ["error", "always", { omitLastInOneLineBlock: false }],
       quotes: ["error", "double"],
-      "react/prop-types": "off",
+      "react/prop-types": [0],
+      indent: ["error", 2],
     },
   },
 ]);
