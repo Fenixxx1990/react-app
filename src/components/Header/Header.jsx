@@ -1,5 +1,5 @@
 import "./Header.css";
 
 export default function Header() {
-  return <>Logo</>;
+  return <img className="logo" src="/logo.svg" alt="Логотип журнала" />;
 }
