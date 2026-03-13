@@ -27,7 +27,13 @@ export default defineConfig([
       semi: ["error", "always", { omitLastInOneLineBlock: false }],
       quotes: ["error", "double"],
       "react/prop-types": [0],
-      indent: ["error", 2],
+      indent: [
+        "error",
+        2,
+        {
+          SwitchCase: 1,
+        },
+      ],
     },
   },
 ]);
