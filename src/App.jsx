@@ -29,7 +29,7 @@ export default function App() {
     setItems((oldItem) => [
       ...oldItem,
       {
-        id: Math.max(...oldItem.map((i) => i.id)) + 1,
+        id: oldItem.length > 0 ? Math.max(...oldItem.map((i) => i.id)) + 1 : 1,
         text: item.text,
         title: item.title,
         date: new Date(item.date),
