@@ -3,6 +3,7 @@ import Button from "../Button/Button";
 import { useEffect, useReducer, useRef } from "react";
 import cn from "classnames";
 import { formReducer, INITIAL_STATE } from "./JournalForm.state";
+import Input from "../Input/Input";
 
 export default function JournalForm({ onSubmit }) {
   const [formState, dispatchForm] = useReducer(formReducer, INITIAL_STATE);
@@ -60,15 +61,14 @@ export default function JournalForm({ onSubmit }) {
   return (
     <form className={styles["journal-form"]} onSubmit={addJournalItem}>
       <div>
-        <input
+        <Input
           type="text"
           name="title"
+          isValid={isValid.title}
           ref={titleRef}
           onChange={onChange}
           value={values.title}
-          className={cn(styles["input-title"], {
-            [styles.invalid]: !isValid.title,
-          })}
+          appearence="title"
         />
       </div>
       <div className={styles["form-row"]}>
@@ -76,16 +76,14 @@ export default function JournalForm({ onSubmit }) {
           <img src="/calendar.svg" alt="Иконка календаря" />
           <span>Дата</span>
         </label>
-        <input
+        <Input
           id="date"
           type="date"
           ref={dateRef}
+          isValid={isValid.date}
           onChange={onChange}
           value={values.date}
           name="date"
-          className={cn(styles["input"], {
-            [styles.invalid]: !isValid.date,
-          })}
         />
       </div>
       <div className={styles["form-row"]}>
@@ -93,13 +91,12 @@ export default function JournalForm({ onSubmit }) {
           <img src="/folder-icon.svg" alt="Иконка папки" />
           <span>Метки</span>
         </label>
-        <input
+        <Input
           type="text"
           onChange={onChange}
           value={values.tag}
           id="tag"
           name="tag"
-          className={styles.input}
         />
       </div>
 
