@@ -4,7 +4,7 @@ import JournalItem from "../JournalItem/JournalItem";
 import { useContext } from "react";
 import { UserContext } from "../../context/user.context";
 
-export default function JournalList({ items }) {
+export default function JournalList({ items, setItem }) {
   const { userId } = useContext(UserContext);
 
   const sortItems = (a, b) => {
@@ -26,7 +26,7 @@ export default function JournalList({ items }) {
   return (
     <>
       {filterItems.map((el) => (
-        <CardButton key={el.id}>
+        <CardButton key={el.id} onClick={() => setItem(el)}>
           <JournalItem title={el.title} text={el.text} date={el.date} />
         </CardButton>
       ))}
