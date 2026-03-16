@@ -6,9 +6,6 @@ import { UserContext } from "../../context/user.context";
 
 export default function JournalList({ items }) {
   const { userId } = useContext(UserContext);
-  if (items.length === 0) {
-    return <p>Записей пока нет, добавьте первую</p>;
-  }
 
   const sortItems = (a, b) => {
     if (a.date < b.date) {
@@ -18,16 +15,21 @@ export default function JournalList({ items }) {
     }
   };
 
+  const filterItems = items
+    .filter((el) => el.userId === userId)
+    .sort(sortItems);
+
+  if (items.length === 0) {
+    return <p>Записей пока нет, добавьте первую</p>;
+  }
+
   return (
     <>
-      {items
-        .filter((el) => el.userId === userId)
-        .sort(sortItems)
-        .map((el) => (
-          <CardButton key={el.id}>
-            <JournalItem title={el.title} text={el.text} date={el.date} />
-          </CardButton>
-        ))}
+      {filterItems.map((el) => (
+        <CardButton key={el.id}>
+          <JournalItem title={el.title} text={el.text} date={el.date} />
+        </CardButton>
+      ))}
     </>
   );
 }
